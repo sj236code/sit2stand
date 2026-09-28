@@ -65,11 +65,13 @@ ONSET_PERCENTILE     = 25          # % of composite range: bout on/off (edge) th
 PLATEAU_PERCENTILE   = 55          # % of composite range: must exceed inside a bout
 APDM_PERCENTILE      = 90          # P90
 
-# ─── Paths – adjust to your machine ────────────────────────────────────────────
-UPLOAD_DIR = r"D:\Mariya\HipKneeExo_Tests_NN\Subject01_June23_25\EMG\s2s"
-MVC_DIR    = r"D:\Mariya\HipKneeExo_Tests_NN\Subject01_June23_25\EMG\MVC"
-OUT_DIR    = r"D:\Mariya\HipKneeExo_Tests_NN\Subject01_June23_25\EMG\s2s"
+# ─── Paths ────────────────────────────────────────────────────────────────────
+UPLOAD_DIR = r"D:\Saanya Dell XPS 9500\VSCode\BioDynamics\s2s"
+MVC_DIR    = r"D:\Saanya Dell XPS 9500\VSCode\BioDynamics\s2s"
+OUT_DIR    = r"D:\Saanya Dell XPS 9500\VSCode\BioDynamics\s2s\output"
+
 MVC_PLOT_DIR = os.path.join(OUT_DIR, "MVC_Plots")
+
 os.makedirs(OUT_DIR, exist_ok=True)
 os.makedirs(MVC_PLOT_DIR, exist_ok=True)
 
