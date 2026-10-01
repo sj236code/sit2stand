@@ -97,26 +97,23 @@ COMPOSITE_MUSCLES = ["RF_R", "RF_L", "VL_R", "VL_L", "VM_R", "VM_L"]
 
 # ─── MVC files ────────────────────────────────────────────────────────────────
 MVC_FILES = [
-    ("EMG_Recording_Subject01_HipExt_L_MVC.csv",   ["GMax_L"]),
-    ("EMG_Recording_Subject01_HipExt_R_MVC.csv",   ["GMax_R"]),
-    ("EMG_Recording_Subject01_HipFlex_L_MVC.csv",  ["IL_L", "TFL_L"]),
-    ("EMG_Recording_Subject01_HipFlex_R_MVC.csv",  ["IL_R", "TFL_R"]),
-    ("EMG_Recording_Subject01_KneeExt_L_MVC.csv",  ["RF_L", "VL_L", "VM_L"]),
-    ("EMG_Recording_Subject01_KneeExt_R_MVC.csv",  ["RF_R", "VL_R", "VM_R"]),
-    ("EMG_Recording_Subject01_KneeFlex_L_MVC.csv", ["BF_L", "ST_L"]),
-    ("EMG_Recording_Subject01_KneeFlex_R_MVC.csv", ["BF_R", "ST_R"]),
+    ("EMG_Recording_Subject02_HipExt_L_MVC.csv",   ["GMax_L"]),
+    ("EMG_Recording_Subject02_HipExt_R_MVC.csv",   ["GMax_R"]),
+    ("EMG_Recording_Subject02_HipFlex_L_MVC.csv",  ["IL_L", "TFL_L"]),
+    ("EMG_Recording_Subject02_HipFlex_R_MVC.csv",  ["IL_R", "TFL_R"]),
+    ("EMG_Recording_Subject02_KneeExt_L_MVC.csv",  ["RF_L", "VL_L", "VM_L"]),
+    ("EMG_Recording_Subject02_KneeExt_R_MVC.csv",  ["RF_R", "VL_R", "VM_R"]),
+    ("EMG_Recording_Subject0_KneeFlex_L_MVC.csv", ["BF_L", "ST_L"]),
+    ("EMG_Recording_Subject02_KneeFlex_R_MVC.csv", ["BF_R", "ST_R"]),
 ]
 
 # Condition definitions:
 #   (label, emg_filename, segmentation_mode, seg_slice_or_None, file_tag)
 # All conditions now use EMG-based automatic segmentation.
 TRIALS = [
-    ("No Exo",    "EMG_Recording_Subject01_NoExo_s2s.csv",
-     "emg",    None,     "NoExo_s2s"),
-    ("No Torque", "EMG_Recording_Subject01_NoTorque_s2s.csv",
-     "emg",    None,     "NoTorque_s2s"),
-    ("NN Torque",   "EMG_Recording_Subject01_NN_s2s_10nm.csv",
-     "emg",    None,     "NN_s2s"),
+    ("No Exo", "EMG_Recording_Subject02_NoExo_s2s.csv", "emg", None, "NoExo_s2s"),
+    ("No Torque", "EMG_Recording_Subject02_NoTorque_s2s.csv", "emg", None, "NoTorque_s2s"),
+    ("NN Torque", "EMG_Recording_Subject02_NN_s2s_10nm.csv", "emg", None, "NN_s2s"),
 ]
 
 # ─── Plot colours ──────────────────────────────────────────────────────────────
@@ -314,7 +311,7 @@ mvc_per_trial    = {}
 
 for mvc_fname, target_muscles in MVC_FILES:
     trial_tag = os.path.splitext(mvc_fname)[0].replace(
-        "EMG_Recording_Subject01_", "")
+        "EMG_Recording_Subject02_", "")
     print(f"  {trial_tag}: target = {target_muscles}")
 
     df = pd.read_csv(os.path.join(MVC_DIR, mvc_fname))
@@ -337,7 +334,7 @@ for mvc_fname, target_muscles in MVC_FILES:
     # ── 16-muscle 4×4 grid plot for this MVC trial ──
     fig, axes = plt.subplots(4, 4, figsize=(16, 11), sharex=True)
     fig.suptitle(
-        f"Subject01 — MVC trial: {trial_tag}\n"
+        f"Subject02 — MVC trial: {trial_tag}\n"
         f"target muscles highlighted in red  |  "
         f"green dot = peak (used as MVC for that muscle)",
         fontsize=12, fontweight="bold", y=1.005,
@@ -495,7 +492,7 @@ for (cond_label, s2s_fname, seg_mode, seg_slice, file_tag) in TRIALS:
     # ──────────────────────────────────────────────────────────────────────────
     fig6, axes6 = plt.subplots(4, 4, figsize=(20, 14), sharex=True)
     plt.subplots_adjust(hspace=0.18, wspace=0.05)
-    fig6.suptitle(f"Subject01 — {cond_label} — EMG envelopes with s2s-cycle "
+    fig6.suptitle(f"Subject02 — {cond_label} — EMG envelopes with s2s-cycle "
         f"segmentation  (EMG based, n = {n_cycles})",
         fontsize=23, fontweight="bold", y=0.99,
     )
@@ -544,7 +541,7 @@ for (cond_label, s2s_fname, seg_mode, seg_slice, file_tag) in TRIALS:
     fig5, axes5 = plt.subplots(4, 4, figsize=(20, 14), sharex=True)
     plt.subplots_adjust(hspace=0.18, wspace=0.05)
     fig5.suptitle(
-        f"Subject01 — {cond_label} — Individual s2s cycles with mean overlay",
+        f"Subject02 — {cond_label} — Individual s2s cycles with mean overlay",
         fontsize=23, fontweight="bold", y=0.99,
     )
 
@@ -592,7 +589,7 @@ for (cond_label, s2s_fname, seg_mode, seg_slice, file_tag) in TRIALS:
     # ──────────────────────────────────────────────────────────────────────────
     fig4, axes4 = plt.subplots(4, 4, figsize=(20, 14), sharex=True)
     plt.subplots_adjust(hspace=0.18, wspace=0.05)
-    fig4.suptitle(f"Subject01 — {cond_label} — EMG (Global MVC) mean ± SD",
+    fig4.suptitle(f"Subject02 — {cond_label} — EMG (Global MVC) mean ± SD",
         fontsize=23, fontweight="bold", y=0.99,
     )
 
@@ -650,7 +647,7 @@ for (cond_label, s2s_fname, seg_mode, seg_slice, file_tag) in TRIALS:
                 "SD_normEMG":   round(sd_val, 5),
                 f"P{APDM_PERCENTILE}_APDM": round(p90, 5),
             })
-    csv_path = os.path.join(OUT_DIR, f"EMG_CycleAvg_Subject01_{file_tag}.csv")
+    csv_path = os.path.join(OUT_DIR, f"EMG_CycleAvg_Subject02_{file_tag}.csv")
     pd.DataFrame(rows).to_csv(csv_path, index=False)
     print(f"  ✓ Cycle-average CSV          → {csv_path}")
 
@@ -658,7 +655,7 @@ for (cond_label, s2s_fname, seg_mode, seg_slice, file_tag) in TRIALS:
     # FIG 8 : Cycle-averaged mean ± SD (0-48% and 52-100% regions)
     # ──────────────────────────────────────────────────────────────────────────
     fig8 = plt.figure(figsize=(20, 14))
-    fig8.suptitle(f"Subject01 — {cond_label} — EMG mean ± SD",
+    fig8.suptitle(f"Subject02 — {cond_label} — EMG mean ± SD",
                   fontsize=23, fontweight="bold", y=0.99)
 
     # Create a 4x4 GridSpec, each cell will be split into two sub-cells
@@ -728,7 +725,7 @@ CONDITION_COLORS = {
  
 fig7, axes7 = plt.subplots(4, 4, figsize=(20, 14), sharex=True)
 plt.subplots_adjust(hspace=0.18, wspace=0.05)
-fig7.suptitle(("Subject01 — EMG (Global MVC) mean by condition"),
+fig7.suptitle(("Subject02 — EMG (Global MVC) mean by condition"),
     fontsize=23, fontweight="bold", y=0.99, 
 )
  
@@ -784,7 +781,7 @@ print(f"  ✓ Fig7 (cross-condition mean ± SD) → {out7}")
 # ──────────────────────────────────────────────────────────────────────────
 
 fig9 = plt.figure(figsize=(20, 14))
-fig9.suptitle(f"Subject01 — EMG mean by condition",
+fig9.suptitle(f"Subject02 — EMG mean by condition",
               fontsize=23, fontweight="bold", y=0.99)
 gs_main = fig9.add_gridspec(4, 4, hspace=0.18, wspace=0.15)
 
